@@ -1,15 +1,26 @@
+
 namespace busGossip;
 
 public class Tests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
-    public void Test1()
+    public void WhenOneDriver_ShouldReturn1()
     {
-        Assert.Pass();
+        // arrange
+        
+
+        // act
+        var result = Program.GetNumberOfStops(new List<int> { 1 });
+
+        // assert
+        Assert.That(result, Is.EqualTo(1));
+    }
+}
+
+internal class Program
+{
+    internal static int GetNumberOfStops(List<int> list)
+    {
+        return 1;
     }
 }
