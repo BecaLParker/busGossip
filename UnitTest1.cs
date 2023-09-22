@@ -28,22 +28,39 @@ public class Tests
         // assert
         Assert.That(result, Is.EqualTo(2));
     }
+    
+    [Test]
+    public void WhenThreeDriversMeet_ShouldReturnNumberOfStops()
+    {
+        // arrange
+        
+
+        // act
+        var result = Program.GetNumberOfStops(new List<int> { 4, 5, 3 }, new List<int> { 2, 1, 3 }, new List<int> { 1, 2, 3 });
+
+        // assert
+        Assert.That(result, Is.EqualTo(3));
+    }
 }
 
 internal class Program
 {
     internal static int GetNumberOfStops(params List <int>[] routes)
     {
-        if (routes.Length == 1)
+        var holder = new List<List<int>>();
+        
+        for (int i = 0; i < routes[0].Count; i++)
         {
-            return 1;
+            var stops = new List<int>();
+            for (int j = 0; j < routes.Length; j++)
+            {
+                stops.Add(routes[j][i]);
+            }
+            holder.Add(stops);
         }
-        var route1 = routes[0];
-        var route2 = routes[1];
+        
+        var meetingPlace = holder.FirstOrDefault(x => x.Distinct().Count() == 1);
 
-        var zippedRoutes = route1.Zip(route2).ToList();
-        var meetingPlace = zippedRoutes.FirstOrDefault(x => x.First == x.Second);
-
-        return zippedRoutes.IndexOf(meetingPlace) + 1;
+        return holder.IndexOf(meetingPlace) + 1;
     }
 }
