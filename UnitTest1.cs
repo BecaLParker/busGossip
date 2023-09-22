@@ -40,14 +40,10 @@ internal class Program
         }
         var route1 = routes[0];
         var route2 = routes[1];
-       for (int i = 0; i < route1.Count; i++)
-       {
-           if (route1[i] == route2[i])
-           {
-               return i + 1;
-           }
-       }
 
-       throw new Exception("Jeff and Beca are confused");
+        var zippedRoutes = route1.Zip(route2).ToList();
+        var meetingPlace = zippedRoutes.FirstOrDefault(x => x.First == x.Second);
+
+        return zippedRoutes.IndexOf(meetingPlace) + 1;
     }
 }
