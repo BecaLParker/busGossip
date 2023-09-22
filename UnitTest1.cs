@@ -49,13 +49,9 @@ internal class Program
     {
         var holder = new List<List<int>>();
         
-        for (int i = 0; i < routes[0].Count; i++)
+        for (int i = 0; i < 480; i++)
         {
-            var stops = new List<int>();
-            for (int j = 0; j < routes.Length; j++)
-            {
-                stops.Add(routes[j][i]);
-            }
+            var stops = routes.Select(route => route[i % route.Count]).ToList();
             holder.Add(stops);
         }
         
