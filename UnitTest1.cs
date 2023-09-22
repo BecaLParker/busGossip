@@ -48,6 +48,6 @@ internal class Program
            }
        }
 
-       throw new Exception("Jeff and Beca are confused);
+       throw new Exception("Jeff and Beca are confused");
     }
 }
